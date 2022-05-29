@@ -1,0 +1,60 @@
+"name","description","active","manager","parent","sys_updated_on","email"
+"US Presidents Group 2","Demo user group for Password Reset Application.","true","","","2013-07-25 15:21:07",""
+"US Presidents Group 1","Demo user group for Password Reset Application","true","","","2013-07-25 15:20:25",""
+"Team Development Code Reviewers","Review, approve and/or reject the code pushed to parent instance.","true","","","2013-12-01 15:47:36",""
+"Survey Creators","This is a group of users who have survey_creator role.","true","","","2019-02-11 11:36:56",""
+"Software","IT department responsible for all software requests
+			including installation and repair","true","","","2017-08-21 18:53:27",""
+"Service Desk","","true","Beth Anglin","","2022-03-16 17:14:56","service.desk@yourcompany.com"
+"RMA Approvers","Responsible for Return Material Authorization approvals
+			and RMA number allocations in Inventory Management","true","","","2022-03-17 14:12:50",""
+"Report Access Request Approvers","Default group for approvers of Report Access Requests","true","","","2021-03-15 11:50:37",""
+"Recommendation Admin","Group used for Agent Assist Recommendation admin users","true","","","2019-02-14 16:39:04",""
+"Project Mgmt","","true","","","2020-07-19 18:42:19",""
+"Procurement","Responsible for ordering catalog items, or moving them
+			from inventory that are ""In Stock""","true","","","2017-08-21 18:50:16",""
+"Problem Solving","Group that works on analyzing and fixing problems.
+		","true","","","2022-03-16 22:10:15",""
+"Problem Analyzers","Group that works on analyzing and fixing problems.
+		","true","","","2022-03-16 22:11:33",""
+"Openspace","Openspace approvers.","true","","","2018-07-17 23:09:25",""
+"NY DB","Manages databases hosted in New York","true","","Database","2018-01-09 13:18:22",""
+"Nimsoft desk","","true","","","2019-10-07 01:52:01",""
+"Network CAB Managers","Group to represent the CAB Managers for Network related
+			changes","true","","","2022-03-17 01:36:33",""
+"Network","","true","Bow Ruggeri","","2019-05-23 19:02:08",""
+"Mobile Analytics Settings Managers","Group for all people who have the Mobile Analytics Admin role","true","","","2019-09-14 13:01:22",""
+"LDAP Admins","LDAP admins group","true","","","2013-07-26 14:48:47",""
+"ITSM Engineering","","true","","","2018-01-09 13:15:49",""
+"ITSM App-Dev","Team Develops Iteraction Applications in London
+		","true","Tash Dubrovska","","2021-03-19 08:33:33",""
+"IT Securities","","true","","","2018-01-09 13:00:41",""
+"IT Finance CAB","","true","","","2018-01-09 13:00:17",""
+"Incident Management","Incident Management Group","true","","","2017-05-16 04:13:49",""
+"Help Desk","","true","ATF Change Management","","2022-03-24 02:50:32",""
+"Hardware","IT department responsible for all hardware requests
+			including installation and repair","true","","","2017-08-21 18:54:14",""
+"Field Services","","true","","","2017-08-17 18:11:34",""
+"eCAB Approval","eCAB Approvers","true","","","2011-09-30 01:46:44",""
+"Database San Diego","Manages databases hosted in San Diego","true","","Database","2020-06-09 11:46:37",""
+"Database Atlanta","Manages databases hosted in Atlanta","true","","Database","2020-06-09 11:47:18",""
+"Database","","true","Don Goodliffe","","2019-05-23 19:02:18",""
+"Change Management","Change Management Group","true","","","2015-06-09 22:35:12",""
+"Catalog Request Approvers for Sales","This is a group of users that need to approve Service
+			Catalog requests from the Sales department
+		","true","","","2017-08-17 18:11:50",""
+"Catalog Request Approvers > $1000","This is the group of users that need to approve a Service
+			Catalog request that is greater than $1000
+		","true","","","2017-08-17 18:11:42",""
+"Capacity Mgmt","","true","","","2020-07-19 18:40:19",""
+"CAB Approval","CAB approvers","true","","","2011-09-30 09:30:34",""
+"Business Application Registration Approval Group","Approval group for Business Application lifecycle management service requests for Registering a new Business Application","true","","","2020-07-28 21:02:26",""
+"ATF_TestGroup_ServiceDesk","ATF_TestGroup_ServiceDesk","true","","","2018-08-30 01:35:35",""
+"ATF_TestGroup_Network","ATF_TestGroup_Network","true","","","2018-08-30 01:35:11",""
+"ATF Service Level Management  Group","","true","","","2019-07-13 09:01:15",""
+"Application Development","Team Develops ITSM Applications in London","true","Bushra Akhtar","","2022-03-17 09:42:02",""
+"App Engine Studio Users","Users who are able to access App Engine Studio","true","","","2020-04-16 09:51:20",""
+"App Engine Admins","Users who can review and approve tasks related to custom application development","true","","","2021-06-28 12:12:44",""
+"Analytics Settings Managers","
+		Group for all people who have the Analytics Admin role
+	","true","","","2020-03-17 04:39:14",""
