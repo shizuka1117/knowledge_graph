@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 @NoArgsConstructor
 public class Item {
     @Id
-    String id;
     String name;
+    String id;
     String category;
     String subcategory;
     String department;

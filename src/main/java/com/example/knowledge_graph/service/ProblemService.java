@@ -4,5 +4,7 @@ import com.example.knowledge_graph.entity.Problem;
 import org.springframework.stereotype.Service;
 
 public interface ProblemService {
-    Problem findProblemById(String id);
+    Problem findById(String id);
+
+    String findRelatedUser();
 }

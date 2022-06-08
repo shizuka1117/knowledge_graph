@@ -16,7 +16,7 @@ public class IncidentServiceImpl implements IncidentService {
     IncidentRepository incidentRepository;
 
     @Override
-    public Incident findIncidentById(String id) {
-        return incidentRepository.getIncidentByNumber(id);
+    public Incident findById(String id) {
+        return incidentRepository.findById(id).orElse(null);
     }
 }

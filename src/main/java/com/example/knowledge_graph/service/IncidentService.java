@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 
 public interface IncidentService {
-    Incident findIncidentById(String id);
+    Incident findById(String id);
 }

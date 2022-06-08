@@ -5,5 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Simple_Incident_DTO {
+public class BasicInfo {
+    String label;
+    String name;
 }

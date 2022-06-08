@@ -1,21 +1,17 @@
 package com.example.knowledge_graph.controller;
 
 
-import com.example.knowledge_graph.entity.Incident;
-import com.example.knowledge_graph.entity.Problem;
+import com.example.knowledge_graph.entity.Group;
+import com.example.knowledge_graph.entity.Item;
 import com.example.knowledge_graph.entity.SysUser;
-import com.example.knowledge_graph.repository.SysUserRepository;
-import com.example.knowledge_graph.service.IncidentService;
-import com.example.knowledge_graph.service.ProblemService;
-import com.example.knowledge_graph.service.SysUserService;
-import com.example.knowledge_graph.service.impl.ProblemServiceImpl;
+import com.example.knowledge_graph.service.*;
 import com.example.knowledge_graph.util.Result;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("main")
+@RequestMapping("basic")
 public class MainController {
     @Resource
     IncidentService incidentService;
@@ -23,6 +19,10 @@ public class MainController {
     ProblemService problemService;
     @Resource
     SysUserService sysUserService;
+    @Resource
+    ItemService itemService;
+    @Resource
+    GroupService groupService;
 
     /**
      * todo: 获取知识图谱基本信息
@@ -38,7 +38,7 @@ public class MainController {
      */
     @GetMapping("/incident/{incidentId}")
     public Result getIncident(@PathVariable("incidentId") String id){
-        return Result.ok(incidentService.findIncidentById(id));
+        return Result.ok(incidentService.findById(id));
     }
 
     /**
@@ -46,8 +46,43 @@ public class MainController {
      */
     @GetMapping("/problem/{problemId}")
     public Result getProblem(@PathVariable("problemId") String id){
-        return Result.ok(problemService.findProblemById(id));
+        return Result.ok(problemService.findById(id));
     }
+
+    /**
+     * 查询单个系统用户节点信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/user/{userId}")
+    public Result getUser(@PathVariable("userId") String id){
+        SysUser sysUser = sysUserService.findById(id);
+        return Result.ok(sysUser);
+    }
+
+    /**
+     * 查询单个ci节点信息
+     * @param itemName item名
+     * @return
+     */
+    @GetMapping("/item/{itemName}")
+    public Result getItem(@PathVariable("itemName") String itemName){
+        Item item = itemService.findById(itemName);
+        return Result.ok(item);
+    }
+
+    /**
+     * 查询单个用户组节点信息
+     * @param groupName item名
+     * @return
+     */
+    @GetMapping("/group/{name}")
+    public Result getGroup(@PathVariable("name") String groupName){
+        Group group = groupService.findById(groupName);
+        return Result.ok(group);
+    }
+
+
 
     /**
      * todo: 删除单个Incident节点信息（包括关联）
@@ -61,18 +96,11 @@ public class MainController {
 
     /**
      * todo: 删除单个Problem节点信息（包括关联）
-     * @param Id Problem id
+     * @param id Problem id
      * @return
      */
     @DeleteMapping("/problem/{problemId}")
-    public Result deleteProblem(@PathVariable("problemId") String Id){
+    public Result deleteProblem(@PathVariable("problemId") String id){
         return Result.ok();
-    }
-
-
-    @GetMapping("/user/{userId}")
-    public Result getUser(@PathVariable("userId") String id){
-        SysUser sysUser = sysUserService.findById(id);
-        return Result.ok(sysUser);
     }
 }

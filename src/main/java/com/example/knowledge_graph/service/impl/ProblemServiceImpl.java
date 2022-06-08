@@ -16,7 +16,12 @@ public class ProblemServiceImpl implements ProblemService {
     ProblemRepository problemRepository;
 
     @Override
-    public Problem findProblemById(String id) {
-        return problemRepository.getProblemByNumber(id);
+    public Problem findById(String id) {
+        return problemRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public String findRelatedUser() {
+        return null;
     }
 }
