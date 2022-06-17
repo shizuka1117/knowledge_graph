@@ -25,6 +25,15 @@ public class MainController {
     GroupService groupService;
 
     /**
+     * 测试用的，最后删掉
+     * @return
+     */
+    @GetMapping("/test")
+    public Result getTest(){
+        return Result.ok();
+    }
+
+    /**
      * todo: 获取知识图谱基本信息
      * @return
      */
