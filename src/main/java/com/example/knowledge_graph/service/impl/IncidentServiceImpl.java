@@ -37,31 +37,33 @@ public class IncidentServiceImpl implements IncidentService {
      */
     @Override
     public BasicResultSet findAll() {
-        List<String> incidentIdList = incidentRepository.getAllId();
-        List<String> problemIdList = problemRepository.getAllId();
-        String cql1 = "match (i:Incident)-[r]-(t) where labels(t)[0]<>\"Problem\" return i.number, type(r), t.name, labels(t)[0]";
-        String cql2 = "match (p:Problem)-[r]-(t) where labels(t)[0]<>\"Incident\" return p.number, type(r), t.name, labels(t)[0]";
-        String cql3 = "match (i:Incident)-[r]-(t) where labels(t)[0]=\"Problem\" return i.number, type(r), t.number, labels(t)[0]";
-//        Result result1 = session.run(cql1);
-//        Result result2 = session.run(cql2);
-        Result result3 = session.run(cql3);
-        List<Record> list = result3.list();
-//        list.addAll(result2.list());
-//        list.addAll(result3.list());
         List<BasicInfo> basicInfoList = new ArrayList<>();
         List<BasicLink> basicLinkList = new ArrayList<>();
-//        for(String id: incidentIdList){
-//            basicInfoList.add(new BasicInfo("incident", id, 5));
-//        }
-//        for(String id: problemIdList){
-//            basicInfoList.add(new BasicInfo("problem", id, 5));
-//        }
-        for(Record record:list){
+
+        String cql1 = "match (i:Incident)-[r]-(t) where labels(t)[0]<>\"Problem\" return i.number, type(r), t.name, labels(t)[0], labels(i)[0]";
+        String cql2 = "match (p:Problem)-[r]-(t) where labels(t)[0]<>\"Incident\" return p.number, type(r), t.name, labels(t)[0], labels(p)[0]";
+        String cql3 = "match (i:Incident)-[r]-(p:Problem) return i.number, type(r), p.number, labels(p)[0], labels(i)[0]";
+
+        List<Record> resultList = new ArrayList<>();
+        Result result1 = session.run(cql1);
+        Result result2 = session.run(cql2);
+        Result result3 = session.run(cql3);
+        resultList.addAll(result1.list());
+        resultList.addAll(result2.list());
+        resultList.addAll(result3.list());
+
+        for (Record record: resultList){
             BasicLink link = new BasicLink(record.get(1).asString(), record.get(0).asString(), record.get(2).asString(), 1);
             basicLinkList.add(link);
-            basicInfoList.add(new BasicInfo(record.get(3).asString(), record.get(2).asString(), 3)); // delete
-            basicInfoList.add(new BasicInfo("incident", record.get(0).asString(), 3));
+            BasicInfo info1 = new BasicInfo(record.get(4).asString(), record.get(0).asString(), 3);
+            BasicInfo info2 = new BasicInfo(record.get(3).asString(), record.get(2).asString(), 3);
+            if (!basicInfoList.contains(info1))
+                basicInfoList.add(info1);
+            if (!basicInfoList.contains(info2)) {
+                basicInfoList.add(info2);
+            }
         }
+
         BasicResultSet resultSet = new BasicResultSet(basicInfoList, basicLinkList);
         return resultSet;
     }
