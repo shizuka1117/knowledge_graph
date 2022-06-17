@@ -33,6 +33,7 @@ public class IncidentServiceImpl implements IncidentService {
     public List<Object> findAll() {
         List<String> incidentIdList = incidentRepository.getAllId();
         List<String> problemIdList = problemRepository.getAllId();
+
         return null;
     }
 }
