@@ -34,7 +34,7 @@ public class MainController {
     }
 
     /**
-     * todo: 获取知识图谱基本信息
+     * 获取知识图谱基本信息
      * @return
      */
     @GetMapping("/basic")

@@ -1,8 +1,8 @@
 package com.example.knowledge_graph.service.impl;
 
-import com.example.knowledge_graph.dto.BasicInfoWithId;
-import com.example.knowledge_graph.dto.BasicInfoWithName;
+import com.example.knowledge_graph.dto.BasicInfo;
 import com.example.knowledge_graph.dto.BasicLink;
+import com.example.knowledge_graph.dto.BasicResultSet;
 import com.example.knowledge_graph.entity.Incident;
 import com.example.knowledge_graph.repository.IncidentRepository;
 import com.example.knowledge_graph.repository.ProblemRepository;
@@ -36,26 +36,32 @@ public class IncidentServiceImpl implements IncidentService {
      * @return
      */
     @Override
-    public List findAll() {
+    public BasicResultSet findAll() {
         List<String> incidentIdList = incidentRepository.getAllId();
         List<String> problemIdList = problemRepository.getAllId();
-        String cql1 = "match (i:Incident)-[r]-(t) return i.number, type(r), t.name, labels(t)[0]";
-        String cql2 = "match (p:Problem)-[r]-(t) return p.number, type(r), t.name, labels(t)[0]";
+        String cql1 = "match (i:Incident)-[r]-(t) where labels(t)[0]<>\"Problem\" return i.number, type(r), t.name, labels(t)[0]";
+        String cql2 = "match (p:Problem)-[r]-(t) where labels(t)[0]<>\"Incident\" return p.number, type(r), t.name, labels(t)[0]";
+        String cql3 = "match (i:Incident)-[r]-(t) where labels(t)[0]=\"Problem\" return i.number, type(r), t.number, labels(t)[0]";
         Result result1 = session.run(cql1);
         Result result2 = session.run(cql2);
+        Result result3 = session.run(cql3);
         List<Record> list = result1.list();
         list.addAll(result2.list());
-        List<BasicInfoWithId> basicInfoWithIdList = new ArrayList<>();
+        list.addAll(result3.list());
+        List<BasicInfo> basicInfoList = new ArrayList<>();
+        List<BasicLink> basicLinkList = new ArrayList<>();
         for(String id: incidentIdList){
-            basicInfoWithIdList.add(new BasicInfoWithId("incident", id, 5));
+            basicInfoList.add(new BasicInfo("incident", id, 5));
         }
         for(String id: problemIdList){
-            basicInfoWithIdList.add(new BasicInfoWithId("problem", id, 5));
+            basicInfoList.add(new BasicInfo("problem", id, 5));
         }
         for(Record record:list){
             BasicLink link = new BasicLink(record.get(1).asString(), record.get(0).asString(), record.get(2).asString(), 1);
-            basicInfoWithIdList.add(new BasicInfoWithId(record.get(3).asString(), record.get(2).asString(), 3));
+            basicLinkList.add(link);
+            basicInfoList.add(new BasicInfo(record.get(3).asString(), record.get(2).asString(), 3));
         }
-        return basicInfoWithIdList;
+        BasicResultSet resultSet = new BasicResultSet(basicInfoList, basicLinkList);
+        return resultSet;
     }
 }

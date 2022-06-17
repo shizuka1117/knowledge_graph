@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Property;
 
 //todo: 把字段为空的都包装一下
 @NodeEntity
@@ -11,7 +12,8 @@ import org.neo4j.ogm.annotation.NodeEntity;
 @NoArgsConstructor
 public class Group {
     @Id
-    String name;
+    @Property("name")
+    String id;
     String description;
     String email;
 }

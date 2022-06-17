@@ -15,7 +15,7 @@ public class Problem {
     String id;
     String urgency;
     String impact;
-    String statement;
+    String short_description;
     String description;
     String category;
     String subcategory;
