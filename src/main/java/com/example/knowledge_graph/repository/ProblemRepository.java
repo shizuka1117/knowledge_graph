@@ -11,9 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ProblemRepository extends Neo4jRepository<Problem, String> {
-    @Query("MATCH (p:Problem) where p.id=$id RETURN p")
-    Problem getProblemByNumber(@Param("id") String id);
 
-    @Query("MATCH (p:Problem) return p.id")
+    @Query("MATCH (p:Problem) return p.number")
     List<String> getAllId();
 }

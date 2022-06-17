@@ -10,9 +10,9 @@ import java.util.List;
 
 @Repository
 public interface SysUserRepository extends Neo4jRepository<SysUser, String> {
-    @Query("MATCH (u:Sys_User)-[]-(p:Problem) where p.id=$id RETURN u")
+    @Query("MATCH (u:Sys_User)-[]-(p:Problem) where p.number=$id RETURN u")
     List<SysUser> findAllByRelatedProblem(@Param("id") String id);
 
-    @Query("MATCH (u:Sys_User)-[]-(i:Incident) where i.id=$id RETURN u")
+    @Query("MATCH (u:Sys_User)-[]-(i:Incident) where i.number=$id RETURN u")
     List<SysUser> findAllByRelatedIncident(@Param("id") String id);
 }

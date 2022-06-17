@@ -10,9 +10,9 @@ import java.util.List;
 
 @Repository
 public interface IncidentRepository extends Neo4jRepository<Incident, String> {
-    @Query("MATCH (i:Incident) where i.id=$id RETURN i ")
+    @Query("MATCH (i:Incident) where i.number=$id RETURN i ")
     Incident getIncidentByNumber(@Param("id") String id);
 
-    @Query("MATCH (i:Incident) return i.id")
+    @Query("MATCH (i:Incident) return i.number")
     List<String> getAllId();
 }

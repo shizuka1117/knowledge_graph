@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("basic")
+@RequestMapping("graph")
 public class MainController {
     @Resource
     IncidentService incidentService;
@@ -28,9 +28,9 @@ public class MainController {
      * todo: 获取知识图谱基本信息
      * @return
      */
-    @GetMapping("/all")
+    @GetMapping("/basic")
     public Result getAllAssignments(){
-        return Result.ok();
+        return Result.ok(incidentService.findAll());
     }
 
     /**

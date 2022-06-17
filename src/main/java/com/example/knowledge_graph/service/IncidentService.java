@@ -9,5 +9,5 @@ import java.util.List;
 public interface IncidentService {
     Incident findById(String id);
 
-    List<Object> findAll();
+    List findAll();
 }
