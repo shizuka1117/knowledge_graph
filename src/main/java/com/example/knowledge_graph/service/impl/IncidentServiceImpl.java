@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -24,6 +25,9 @@ public class IncidentServiceImpl implements IncidentService {
     IncidentRepository incidentRepository;
     @Resource
     ProblemRepository problemRepository;
+
+    final static HashMap<String, Integer> nodeValue = new HashMap<String, Integer>(){{put("Incident", 5); put("Problem", 4); put("Sys_User", 3); put("Item", 2); put("Group", 1);}};
+    final static HashMap<String, Integer> linkValue = new HashMap<String, Integer>(){{put("assign_to", 4); put("first_reported", 3); put("relate", 2); put("call", 1);}};
 
     @Override
     public Incident findById(String id) {
@@ -53,10 +57,10 @@ public class IncidentServiceImpl implements IncidentService {
         resultList.addAll(result3.list());
 
         for (Record record: resultList){
-            BasicLink link = new BasicLink(record.get(1).asString(), record.get(0).asString(), record.get(2).asString(), 1);
+            BasicLink link = new BasicLink(record.get(1).asString(), record.get(0).asString(), record.get(2).asString(), linkValue.get(record.get(1).asString()));
             basicLinkList.add(link);
-            BasicInfo info1 = new BasicInfo(record.get(4).asString(), record.get(0).asString(), 3);
-            BasicInfo info2 = new BasicInfo(record.get(3).asString(), record.get(2).asString(), 3);
+            BasicInfo info1 = new BasicInfo(record.get(4).asString(), record.get(0).asString(), nodeValue.get(record.get(4).asString()));
+            BasicInfo info2 = new BasicInfo(record.get(3).asString(), record.get(2).asString(), nodeValue.get(record.get(3).asString()));
             if (!basicInfoList.contains(info1))
                 basicInfoList.add(info1);
             if (!basicInfoList.contains(info2)) {
