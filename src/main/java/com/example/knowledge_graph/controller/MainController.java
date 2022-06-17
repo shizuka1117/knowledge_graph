@@ -51,12 +51,12 @@ public class MainController {
 
     /**
      * 查询单个系统用户节点信息
-     * @param id
+     * @param username
      * @return
      */
-    @GetMapping("/user/{userId}")
-    public Result getUser(@PathVariable("userId") String id){
-        SysUser sysUser = sysUserService.findById(id);
+    @GetMapping("/user/{userName}")
+    public Result getUser(@PathVariable("userName") String username){
+        SysUser sysUser = sysUserService.findById(username);
         return Result.ok(sysUser);
     }
 

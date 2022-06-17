@@ -1,11 +1,12 @@
 package com.example.knowledge_graph.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+
+//todo: 告诉前端把字段class改为了label
 @Data
-@NoArgsConstructor
-public class BasicInfo {
+public class BasicInfoWithName {
     String label;
     String name;
+    String size;
 }
