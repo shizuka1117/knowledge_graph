@@ -40,6 +40,7 @@ public class MainController {
     @GetMapping("/basic")
     public Result getAllAssignments(){
         return Result.ok(incidentService.findAll());
+//        return Result.ok();
     }
 
     /**

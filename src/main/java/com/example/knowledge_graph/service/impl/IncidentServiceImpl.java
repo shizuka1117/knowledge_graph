@@ -42,24 +42,25 @@ public class IncidentServiceImpl implements IncidentService {
         String cql1 = "match (i:Incident)-[r]-(t) where labels(t)[0]<>\"Problem\" return i.number, type(r), t.name, labels(t)[0]";
         String cql2 = "match (p:Problem)-[r]-(t) where labels(t)[0]<>\"Incident\" return p.number, type(r), t.name, labels(t)[0]";
         String cql3 = "match (i:Incident)-[r]-(t) where labels(t)[0]=\"Problem\" return i.number, type(r), t.number, labels(t)[0]";
-        Result result1 = session.run(cql1);
-        Result result2 = session.run(cql2);
+//        Result result1 = session.run(cql1);
+//        Result result2 = session.run(cql2);
         Result result3 = session.run(cql3);
-        List<Record> list = result1.list();
-        list.addAll(result2.list());
-        list.addAll(result3.list());
+        List<Record> list = result3.list();
+//        list.addAll(result2.list());
+//        list.addAll(result3.list());
         List<BasicInfo> basicInfoList = new ArrayList<>();
         List<BasicLink> basicLinkList = new ArrayList<>();
-        for(String id: incidentIdList){
-            basicInfoList.add(new BasicInfo("incident", id, 5));
-        }
-        for(String id: problemIdList){
-            basicInfoList.add(new BasicInfo("problem", id, 5));
-        }
+//        for(String id: incidentIdList){
+//            basicInfoList.add(new BasicInfo("incident", id, 5));
+//        }
+//        for(String id: problemIdList){
+//            basicInfoList.add(new BasicInfo("problem", id, 5));
+//        }
         for(Record record:list){
             BasicLink link = new BasicLink(record.get(1).asString(), record.get(0).asString(), record.get(2).asString(), 1);
             basicLinkList.add(link);
-            basicInfoList.add(new BasicInfo(record.get(3).asString(), record.get(2).asString(), 3));
+            basicInfoList.add(new BasicInfo(record.get(3).asString(), record.get(2).asString(), 3)); // delete
+            basicInfoList.add(new BasicInfo("incident", record.get(0).asString(), 3));
         }
         BasicResultSet resultSet = new BasicResultSet(basicInfoList, basicLinkList);
         return resultSet;
