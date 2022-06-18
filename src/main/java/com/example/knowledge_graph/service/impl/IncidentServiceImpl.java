@@ -26,8 +26,8 @@ public class IncidentServiceImpl implements IncidentService {
     @Resource
     ProblemRepository problemRepository;
 
-    final static HashMap<String, Integer> nodeValue = new HashMap<String, Integer>(){{put("Incident", 5); put("Problem", 4); put("Sys_User", 3); put("Item", 2); put("Group", 1);}};
-    final static HashMap<String, Integer> linkValue = new HashMap<String, Integer>(){{put("assign_to", 4); put("first_reported", 3); put("relate", 2); put("call", 1);}};
+    final static HashMap<String, Integer> nodeValue = new HashMap<String, Integer>(){{put("Incident", 10); put("Problem", 8); put("Sys_User", 6); put("Item", 5); put("Group", 4);}};
+    final static HashMap<String, Integer> linkValue = new HashMap<String, Integer>(){{put("assign_to", 6); put("first_reported", 5); put("relate", 4); put("call", 3);}};
 
     @Override
     public Incident findById(String id) {
